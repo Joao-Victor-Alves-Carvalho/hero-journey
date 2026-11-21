@@ -31,7 +31,13 @@ def processar(nome):
     im = Image.open(ORIG + nome + ".jpg")
     if nome.endswith("-ficha"):
         return None
-    if nome.startswith("cena-"):
+    if nome.endswith("-mapa"):
+        # miniatura para o mapa: recorta justo no boneco
+        o = recortar_verde(im)
+        o = o.crop(o.getchannel("A").point(lambda v: 255 if v > 40 else 0).getbbox())
+        o.thumbnail((400, 400), Image.LANCZOS)
+        o.save(JOGO + nome + ".webp", "WEBP", quality=85, method=6)
+    elif nome.startswith("cena-"):
         im = im.convert("RGB")
         im.thumbnail((1600, 1600), Image.LANCZOS)
         im.save(JOGO + nome + ".webp", "WEBP", quality=78, method=6)
