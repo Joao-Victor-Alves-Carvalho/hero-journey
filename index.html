@@ -1,6 +1,14 @@
 <title>Jornada do Herói</title>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#100e1d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="imagens/icone-192.png">
+<link rel="apple-touch-icon" href="imagens/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Jornada">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -27,8 +35,9 @@ body {
   background: var(--noite);
   color: var(--papel);
   font-family: var(--f-texto);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
   overflow: hidden;
 }
 button { font: inherit; color: inherit; cursor: pointer; }
@@ -56,7 +65,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 .medidor .barra i { display: block; height: 100%; background: linear-gradient(90deg, var(--cinza-marca), #b9b4d4); transition: width .6s ease; }
 
 /* ---------- Mapa ---------- */
-.mapa-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; margin-top: -64px; }
+.mapa-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; margin-top: -64px; padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); background: #0c0a18; }
 .mapa-scroll svg { display: block; width: 100%; height: auto; }
 .no { cursor: pointer; }
 .no.bloq { cursor: default; }
@@ -73,7 +82,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   background: linear-gradient(transparent, var(--noite) 40%);
-  font-size: .85rem; color: var(--nevoa); text-align: center;
+  font-size: .95rem; color: var(--nevoa); text-align: center;
 }
 
 /* ---------- Cena ---------- */
@@ -119,7 +128,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 .placa span { display: inline-block; transform: skewX(12deg); }
 .placa.vilao { background: var(--cinza-marca); color: var(--papel); }
 .placa.narr { display: none; }
-.fala { font-size: 1.02rem; min-height: 4.6em; }
+.fala { font-size: 1.12rem; min-height: 4.6em; }
 .fala.narracao { color: #d6d1e8; font-style: italic; }
 .toque { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--nevoa); text-align: right; margin-top: 6px; }
 .toque::after { content: " ▸"; animation: pisca 1.2s steps(2) infinite; }
@@ -381,7 +390,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
         ${atual ? `<circle class="pulso" r="22" fill="none" stroke="#ff7a59" stroke-width="3"/>` : ""}
         <circle class="anel" r="22" fill="${feito ? "#ffc861" : liberado ? "#ff7a59" : "#1b1830"}" stroke="${liberado || feito ? "#fff3" : "#9c97b855"}" stroke-width="2"/>
         <text y="6" text-anchor="middle" font-family="Dela Gothic One, Arial Black, sans-serif" font-size="16" fill="${liberado || feito ? "#1b0f12" : "#6c6984"}">${liberado || feito ? n : "?"}</text>
-        ${rotulo ? `<text x="${ladoDir ? 32 : -32}" y="5" text-anchor="${ladoDir ? "start" : "end"}" font-family="Zen Kaku Gothic New, sans-serif" font-weight="700" font-size="13" fill="#efeaf7" paint-order="stroke" stroke="#100e1d" stroke-width="4">${rotulo}</text>` : ""}
+        ${rotulo ? `<text x="${ladoDir ? 32 : -32}" y="5" text-anchor="${ladoDir ? "start" : "end"}" font-family="Zen Kaku Gothic New, sans-serif" font-weight="700" font-size="15" fill="#efeaf7" paint-order="stroke" stroke="#100e1d" stroke-width="4">${rotulo}</text>` : ""}
         ${feito ? `<text x="${ladoDir ? 32 : -32}" y="24" text-anchor="${ladoDir ? "start" : "end"}" font-size="13" fill="#ffc861">${"★".repeat(estrelas)}${"☆".repeat(3 - estrelas)}</text>` : ""}
       </g>`;
     }
@@ -398,13 +407,13 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
           <stop offset="0" stop-color="#ff9a6b"/><stop offset=".08" stop-color="#b05a7a"/><stop offset=".25" stop-color="#3a2d5e"/><stop offset=".6" stop-color="#16132a"/><stop offset="1" stop-color="#100e1d"/>
         </linearGradient>
         <radialGradient id="g-sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#ff7a59" stop-opacity="0"/></radialGradient>
-        <filter id="f-blur"><feGaussianBlur stdDeviation="14"/></filter>
+        <filter id="f-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
       </defs>
       <rect width="${W}" height="${H}" fill="url(#g-ceu)"/>
       ${ceu}
       <circle cx="200" cy="-10" r="120" fill="url(#g-sol)"/>
-      <path d="M0 330 L60 250 L110 300 L170 200 L230 280 L290 220 L340 270 L400 210 V420 H0z" fill="#241e40"/>
-      <path d="M0 560 L50 470 L120 540 L190 450 L260 530 L330 460 L400 520 V700 H0z" fill="#1c1834"/>
+      <path d="M0 330 L60 250 L110 300 L170 200 L230 280 L290 220 L340 270 L400 210 V1000 H0z" fill="#241e40"/>
+      <path d="M0 560 L50 470 L120 540 L190 450 L260 530 L330 460 L400 520 V1000 H0z" fill="#1c1834"/>
       <path d="M0 820 L40 780 L80 800 L120 760 L170 790 L230 750 L290 790 L340 760 L400 790 V1000 H0z" fill="#15122a"/>
       <g fill="#0c0a18">
         <path d="M0 1000V930h26v-26h18v26h14v-46h30v46h10v-22h22v-30h12v30h16v22h18v-36h34v36h12v-18h24v-34h14v52h18v-26h26v26h16v-34h22v34h16v-20h22v108z"/>
