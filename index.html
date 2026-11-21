@@ -57,6 +57,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 .topo h1 { font-family: var(--f-display); font-weight: 400; font-size: 1.05rem; margin: 0; letter-spacing: .02em; line-height: 1.1; }
 .topo .sub { font-size: .72rem; color: var(--nevoa); letter-spacing: .14em; text-transform: uppercase; }
 .topo .titulos { flex: 1; min-width: 0; }
+.btn-icone.som-off { color: var(--nevoa); opacity: .7; }
 .btn-icone { background: var(--tinta-2); border: 1px solid #ffffff1a; border-radius: 10px; width: 40px; height: 40px; display: grid; place-items: center; flex: none; }
 .medidor { width: 112px; flex: none; }
 .medidor .rot { display: flex; justify-content: space-between; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--nevoa); }
@@ -223,6 +224,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
         <div class="sub" id="ep-num">Episódio 1</div>
         <h1 id="ep-titulo"></h1>
       </div>
+      <button class="btn-icone" id="btn-som" aria-label="Desligar narração" aria-pressed="true"></button>
       <div class="medidor">
         <div class="rot"><span>Névoa</span><b class="nevoa-num">40%</b></div>
         <div class="barra"><i class="nevoa-barra"></i></div>
@@ -481,6 +483,40 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     mostrarFala(p);
   }
 
+  // ---------- Narração (áudios gerados por ferramentas/gerar-narracao.mjs) ----------
+  function chaveAudio(quem, texto) {
+    let h = 0x811c9dc5;
+    const s = quem + "|" + texto;
+    for (let k = 0; k < s.length; k++) { h ^= s.charCodeAt(k); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h.toString(16).padStart(8, "0");
+  }
+  const audio = new Audio();
+  audio.preload = "auto";
+  const ICONE_SOM = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>';
+  const ICONE_MUDO = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>';
+  function pintarSom() {
+    const ligado = salvo.som !== false;
+    const b = $("btn-som");
+    b.innerHTML = ligado ? ICONE_SOM : ICONE_MUDO;
+    b.classList.toggle("som-off", !ligado);
+    b.setAttribute("aria-pressed", ligado);
+    b.setAttribute("aria-label", ligado ? "Desligar narração" : "Ligar narração");
+  }
+  function pararAudio() { try { audio.pause(); } catch (e) {} }
+  function tocar(quem, texto) {
+    pararAudio();
+    if (salvo.som === false || !texto) return;
+    audio.src = `audio/${chaveAudio(quem, texto)}.mp3`;
+    const pr = audio.play();
+    if (pr && pr.catch) pr.catch(() => {});
+  }
+  $("btn-som").addEventListener("click", () => {
+    salvo.som = salvo.som === false;
+    salvar();
+    pintarSom();
+    if (salvo.som === false) pararAudio();
+  });
+
   function mostrarFala(p) {
     $("escolhas").hidden = true;
     $("caixa").hidden = false;
@@ -506,6 +542,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     }
     else ret.classList.add("oculto");
     digitar(p.texto);
+    tocar(p.quem, p.texto);
   }
 
   function digitar(texto) {
@@ -530,6 +567,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   });
 
   function mostrarEscolha(esc) {
+    tocar("narrador", esc.pergunta);
     $("caixa").hidden = true;
     $("retrato").classList.add("oculto");
     const box = $("escolhas");
@@ -566,9 +604,10 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
       $("veredito").textContent = "A névoa venceu essa";
       $("efeito").textContent = "A névoa ficou mais forte";
       $("btn-retorno").textContent = "Escolher de novo";
-      acaoRetorno = () => { r.hidden = true; };
+      acaoRetorno = () => { pararAudio(); r.hidden = true; };
     }
     $("retorno-texto").textContent = op.retorno;
+    tocar("narrador", op.retorno);
     $("verso").textContent = "♪ " + op.verso;
     r.hidden = false;
     $("btn-retorno").focus();
@@ -576,6 +615,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   $("btn-retorno").addEventListener("click", () => acaoRetorno && acaoRetorno());
 
   function terminarEp() {
+    pararAudio();
     const estrelas = erros === 0 ? 3 : erros <= 2 ? 2 : 1;
     const ant = salvo.eps[ep.numero];
     salvo.eps[ep.numero] = { feito: true, estrelas: Math.max(estrelas, ant ? ant.estrelas : 0) };
@@ -594,7 +634,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     mostrar("tela-fim");
   }
 
-  $("btn-sair").addEventListener("click", () => { clearInterval(digitando); desenharMapa(); mostrar("tela-mapa"); });
+  $("btn-sair").addEventListener("click", () => { clearInterval(digitando); pararAudio(); desenharMapa(); mostrar("tela-mapa"); });
   $("btn-mapa").addEventListener("click", () => { desenharMapa(); mostrar("tela-mapa"); });
   $("btn-rejogar").addEventListener("click", () => iniciarEp(ep.numero));
 
@@ -649,6 +689,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 
   // ---------- Início ----------
   preCarregar();
+  pintarSom();
   pintarNevoa();
   desenharMapa();
   mostrar("tela-mapa");
