@@ -75,6 +75,14 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 .no:focus-visible .anel { stroke: var(--ouro); stroke-width: 4; }
 .no .pulso { transform-box: fill-box; transform-origin: center; animation: pulso 2.2s ease-out infinite; }
 @keyframes pulso { from { transform: scale(1); opacity: .7 } to { transform: scale(2.1); opacity: 0 } }
+#avatar { pointer-events: none; }
+#avatar .av-corpo { transform-box: view-box; }
+#avatar.andando .av-pula { animation: passo .32s ease-in-out infinite; }
+#avatar.andando .av-sombra { animation: sombra .32s ease-in-out infinite; }
+#avatar:not(.andando) .av-pula { animation: respira 2.6s ease-in-out infinite; }
+@keyframes passo { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
+@keyframes sombra { 0%, 100% { transform: scale(1) } 50% { transform: scale(.75) } }
+@keyframes respira { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-2px) } }
 .nevoa-flutua { animation: deriva 18s ease-in-out infinite alternate; }
 .nevoa-flutua.b { animation-duration: 26s; animation-direction: alternate-reverse; }
 @keyframes deriva { from { transform: translateX(-30px) } to { transform: translateX(30px) } }
@@ -431,6 +439,62 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   }
   function epPorNumero(n) { return T.episodios.find((e) => e.numero === n); }
 
+  // ---------- Avatar no mapa ----------
+  let mapaCaminho = null, mapaComp = 0, avatarAndando = false;
+  const compDoEp = (n) => mapaComp * (0.03 + ((n - 1) / (TOTAL_EPISODIOS - 1)) * 0.94);
+  function posAvatarInicial() {
+    if (salvo.posMapa && epLiberado(salvo.posMapa) && epPorNumero(salvo.posMapa)) return salvo.posMapa;
+    let n = 1;
+    for (let k = 1; k <= TOTAL_EPISODIOS; k++) if (epLiberado(k) && epPorNumero(k)) n = k;
+    return n;
+  }
+  function colocarAvatar(comp, direcao) {
+    const pt = mapaCaminho.getPointAtLength(comp);
+    const av = document.getElementById("avatar");
+    if (!av) return;
+    av.setAttribute("transform", `translate(${pt.x.toFixed(1)} ${(pt.y - 21).toFixed(1)})`); // fica em pé sobre a casa
+    if (direcao) av.querySelector(".av-vira").setAttribute("transform", `scale(${direcao} 1)`);
+  }
+  function seguirComCamera() {
+    const sc = $("mapa-scroll"), av = document.getElementById("avatar");
+    if (!av) return;
+    const r = av.getBoundingClientRect(), rs = sc.getBoundingClientRect();
+    const alvo = sc.scrollTop + (r.top - rs.top) - rs.height * 0.55;
+    sc.scrollTop += (alvo - sc.scrollTop) * 0.12;
+  }
+  function andarAte(n, aoChegar) {
+    const de = compDoEp(salvo.posMapa || posAvatarInicial());
+    const ate = compDoEp(n);
+    const av = document.getElementById("avatar");
+    const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!av || Math.abs(ate - de) < 1 || reduzir) {
+      colocarAvatar(ate);
+      salvo.posMapa = n; salvar();
+      return aoChegar();
+    }
+    avatarAndando = true;
+    av.classList.add("andando");
+    const dur = Math.min(3200, Math.max(700, Math.abs(ate - de) * 4));
+    const t0 = performance.now();
+    let ultimoX = mapaCaminho.getPointAtLength(de).x;
+    const quadro = (agora) => {
+      const t = Math.min(1, (agora - t0) / dur);
+      const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      const comp = de + (ate - de) * e;
+      const x = mapaCaminho.getPointAtLength(comp).x;
+      const dir = Math.abs(x - ultimoX) > 0.05 ? (x > ultimoX ? 1 : -1) : null;
+      ultimoX = x;
+      colocarAvatar(comp, dir);
+      seguirComCamera();
+      if (t < 1) return requestAnimationFrame(quadro);
+      av.classList.remove("andando");
+      avatarAndando = false;
+      salvo.posMapa = n; salvar();
+      setTimeout(aoChegar, 220);
+    };
+    requestAnimationFrame(quadro);
+  }
+
   function desenharMapa() {
     const W = 400, H = 1000;
     const d = "M200 950 C 70 910, 60 840, 160 800 S 350 720, 270 660 S 50 590, 110 520 S 350 450, 290 380 S 50 320, 120 250 S 330 190, 260 130 S 150 70, 200 40";
@@ -438,6 +502,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     const caminho = document.createElementNS(ns, "path");
     caminho.setAttribute("d", d);
     const comp = caminho.getTotalLength();
+    mapaCaminho = caminho; mapaComp = comp;
 
     let nos = "";
     for (let i = 0; i < TOTAL_EPISODIOS; i++) {
@@ -492,12 +557,27 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
         <ellipse class="nevoa-flutua" cx="90" cy="560" rx="130" ry="28" fill="#b9b4d4" opacity=".7"/>
       </g>
       ${nos}
+      <g id="avatar" aria-hidden="true">
+        <ellipse class="av-sombra" cx="0" cy="2" rx="13" ry="4.5" fill="#000" opacity=".45" style="transform-box: fill-box; transform-origin: center"/>
+        <g class="av-pula">
+          <g class="av-vira">
+            <path d="M-7 -20 L0 -4 L7 -20 Z" fill="#ffc861"/>
+            <circle cx="0" cy="-42" r="24" fill="#ffc861"/>
+            <circle cx="0" cy="-42" r="21" fill="#2b3a6b"/>
+            <clipPath id="av-recorte"><circle cx="0" cy="-42" r="21"/></clipPath>
+            <image href="imagens/jogo/principe-neutro.webp" x="-46" y="-77" width="92" height="123" clip-path="url(#av-recorte)" preserveAspectRatio="xMidYMid slice"/>
+            <circle cx="0" cy="-42" r="21" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/>
+            <ellipse cx="-8" cy="-56" rx="7" ry="3.5" fill="#fff" opacity=".18" transform="rotate(-30 -8 -56)"/>
+          </g>
+        </g>
+      </g>
     </svg>`;
+    colocarAvatar(compDoEp(posAvatarInicial()));
 
     const sc = $("mapa-scroll");
     // rola até o episódio atual
     requestAnimationFrame(() => {
-      const atual = sc.querySelector(".no:not(.bloq) .pulso") || sc.querySelector(".no:not(.bloq)");
+      const atual = document.getElementById("avatar") || sc.querySelector(".no:not(.bloq)");
       if (atual) {
         const r = atual.getBoundingClientRect(), rs = sc.getBoundingClientRect();
         sc.scrollTop += r.top - rs.top - rs.height * 0.6;
@@ -505,7 +585,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     });
 
     sc.querySelectorAll(".no:not(.bloq)").forEach((g) => {
-      const abrir = () => abrirEpisodio(Number(g.dataset.ep));
+      const abrir = () => { if (!avatarAndando) andarAte(Number(g.dataset.ep), () => abrirEpisodio(Number(g.dataset.ep))); };
       g.addEventListener("click", abrir);
       g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
     });

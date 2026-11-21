@@ -145,3 +145,19 @@ Exterior of a big old logistics warehouse at noon, a large rusty iron sliding ga
 ```
 Interior of an old traditional blacksmith forge at 5 a.m., glowing furnace with burning embers, a heavy anvil in the center with a red-hot iron bar on it, hammers and tongs hanging on brick walls, sparks floating in the air, dark blue dawn light from a small window contrasting with warm orange fire light. Modern Japanese TV anime background art, painterly cinematic lighting, highly detailed, no people, no text, vertical 9:16.
 ```
+
+---
+
+# Correções e extras
+
+### 3 (de novo). Tetsu bravo — sem chapéu
+Anexe a **ficha do Tetsu**.
+```
+Using the attached character as exact reference (same bald gray buzz-cut head with NO hat, same face, scars and leather apron), waist-up portrait, angry intense expression, furrowed brows, clenched jaw, eyes clearly visible and glaring at the viewer, gripping the hammer tightly, red-orange rim light from a forge. Do not add any hat, mask or accessory. Modern Japanese TV anime style, clean line art, cel shading. Plain solid bright green background (#00FF00), no text, vertical 3:4.
+```
+
+### 8. Príncipe em miniatura 3D para o mapa (opcional)
+Anexe a **ficha do Príncipe**.
+```
+Using the attached character as exact reference (same hair, hoodie, lanyard), a cute chibi 3D figurine of him, like a small vinyl collectible toy, full body standing in a walking pose seen from a three-quarter front angle, big head and small body, soft studio lighting with gentle shadows, smooth 3D render. Plain solid bright green background (#00FF00), no ground shadow, no text, vertical 3:4.
+```

@@ -9,7 +9,7 @@ Spoilers: o usuário joga sem ler a história. Nunca conte o roteiro ou as respo
    a dificuldade cresce com a temporada (ver curva no arquivo de spoilers). Cada retorno cita um verso da música.
 3. Escreva a música em `musicas/epNN-titulo.md` (PT e EN, ~7 min, estilo sem nomes de artistas). Siga o formato dos arquivos existentes.
 4. Imagens: acrescente os prompts numerados em `docs/arte-gemini.md`. O usuário sobe as imagens em `imagens/` sem renomear;
-   identifique cada uma olhando, mova o original para `imagens/originais/<nome>.jpg`, tire o fundo verde e gere `imagens/jogo/<nome>.webp`
+   identifique cada uma olhando, mova o original para `imagens/originais/<nome>.jpg` e rode `python3 ferramentas/processar-imagens.py <nome>...`, que gera `imagens/jogo/<nome>.webp`
    (personagens 900x1200 com alpha; cenários até 1600px). Registre expressões novas em `IMAGENS` e cenários em `.fundo.*`/`LOCAIS` no `index.html`.
 5. Personagem novo precisa de voz: entregue um prompt de Voice Design para o usuário e grave o ID em `conteudo/vozes.js`.
 6. Narração: `NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt ELEVENLABS_API_KEY=proxy-injected node ferramentas/gerar-narracao.mjs`

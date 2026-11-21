@@ -7,5 +7,5 @@ window.VOZES = {
   amanha: { nome: "JH Senhor Amanha", id: "5UbHt3Flelx1ZW9u0eRr" },
   voz: { nome: "JH Senhor Amanha", id: "5UbHt3Flelx1ZW9u0eRr" }, // a "voz" sem nome do Ep. 1 é ele
   sussurro: { nome: "JH Senhor Amanha", id: "5UbHt3Flelx1ZW9u0eRr" },
-  tetsu: { nome: "JH Tetsu", id: "" } // falta criar no ElevenLabs
+  tetsu: { nome: "JH Tetsu", id: "F2CnsVHXISptqQI81kIa" }
 };
