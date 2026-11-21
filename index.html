@@ -192,12 +192,39 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 .btn-copiar { background: var(--tinta-2); border: 1px solid #ffffff22; border-radius: 8px; padding: 6px 12px; font-size: .8rem; font-weight: 700; flex: none; }
 .dica { font-size: .85rem; color: var(--nevoa); margin: 0; }
 
+.save-fundo { position: absolute; inset: 0; z-index: 20; background: #07060fcc; display: flex; align-items: flex-end; justify-content: center;
+  padding-block: 0 calc(20px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.save-cartao { width: 100%; background: var(--tinta); border-radius: 18px 4px 18px 4px; border-top: 4px solid var(--ouro); padding: 20px; display: flex; flex-direction: column; gap: 12px; animation: sobe .35s ease; }
+.save-cartao h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.2rem; margin: 0; line-height: 1.2; text-wrap: balance; }
+.save-trecho { margin: 0; padding: 8px 12px; border-left: 3px solid var(--nevoa); color: #d6d1e8; font-style: italic; font-size: .95rem; }
+.save-barra { height: 6px; background: var(--tinta-2); border-radius: 3px; overflow: hidden; }
+.save-barra i { display: block; height: 100%; background: var(--ouro); }
+.save-acoes { display: flex; flex-direction: column; gap: 8px; }
+.btn.fantasma { background: none; color: var(--nevoa); font-family: var(--f-texto); font-weight: 700; padding: 8px; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
 
 <div class="app">
+
+  <!-- CONTINUAR DE ONDE PAROU -->
+  <div class="save-fundo" id="save" hidden role="dialog" aria-modal="true" aria-labelledby="save-titulo">
+    <div class="save-cartao">
+      <div class="eyebrow">Progresso salvo</div>
+      <h2 id="save-titulo"></h2>
+      <div class="save-barra"><i id="save-barra"></i></div>
+      <div class="dica" id="save-info"></div>
+      <p class="save-trecho" id="save-trecho"></p>
+      <div class="save-acoes">
+        <button class="btn" id="btn-continuar">Continuar de onde parei</button>
+        <button class="btn sec" id="btn-recomecar">Começar o episódio do início</button>
+        <button class="btn fantasma" id="btn-save-fechar">Agora não</button>
+      </div>
+    </div>
+  </div>
 
   <!-- MAPA -->
   <section class="tela" id="tela-mapa">
@@ -444,7 +471,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     });
 
     sc.querySelectorAll(".no:not(.bloq)").forEach((g) => {
-      const abrir = () => iniciarEp(Number(g.dataset.ep));
+      const abrir = () => abrirEpisodio(Number(g.dataset.ep));
       g.addEventListener("click", abrir);
       g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
     });
@@ -458,11 +485,32 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   // ---------- Episódio ----------
   let ep = null, roteiro = [], i = -1, erros = 0, digitando = null, textoAtual = "";
 
-  function iniciarEp(n) {
+  // ---------- Save automático: guarda o ponto a cada fala ----------
+  let depoisAplicados = [];
+  function salvarPonto() {
+    salvo.andamento = { ep: ep.numero, i, erros, depois: depoisAplicados.slice(), total: roteiro.length, trecho: textoAtual || "" };
+    salvar();
+  }
+
+  function iniciarEp(n, continuar) {
     ep = epPorNumero(n);
     if (!ep) return;
     roteiro = ep.passos.slice();
-    i = -1; erros = 0;
+    i = -1; erros = 0; depoisAplicados = []; textoAtual = "";
+    const a = salvo.andamento;
+    if (continuar && a && a.ep === n) {
+      (a.depois || []).forEach(([pos, opIdx]) => {
+        const passo = roteiro[pos];
+        const op = passo && passo.escolha && passo.escolha.opcoes[opIdx];
+        if (op && op.depois) { roteiro.splice(pos + 1, 0, ...op.depois); depoisAplicados.push([pos, opIdx]); }
+      });
+      erros = a.erros || 0;
+      i = Math.min(a.i, roteiro.length - 1) - 1;
+      for (let k = i; k >= 0; k--) if (roteiro[k].cena) { definirCena(roteiro[k].cena); break; }
+    } else {
+      salvo.andamento = null;
+      salvar();
+    }
     $("ep-num").textContent = `Episódio ${ep.numero}`;
     $("ep-titulo").textContent = ep.titulo;
     $("retorno").hidden = true;
@@ -543,6 +591,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     }
     else ret.classList.add("oculto");
     digitar(p.texto);
+    salvarPonto();
     tocar(p.quem, p.texto);
   }
 
@@ -568,6 +617,8 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   });
 
   function mostrarEscolha(esc) {
+    textoAtual = esc.pergunta;
+    salvarPonto();
     tocar("narrador", esc.pergunta);
     $("caixa").hidden = true;
     $("retrato").classList.add("oculto");
@@ -594,12 +645,13 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
       $("efeito").textContent = "A névoa recuou";
       $("btn-retorno").textContent = "Continuar";
       acaoRetorno = () => {
-        if (op.depois) roteiro.splice(i + 1, 0, ...op.depois);
+        if (op.depois) { depoisAplicados.push([i, roteiro[i].escolha.opcoes.indexOf(op)]); roteiro.splice(i + 1, 0, ...op.depois); }
         r.hidden = true;
         avancar();
       };
     } else {
       erros++;
+      salvarPonto();
       mudarNevoa(12);
       botao.disabled = true;
       $("veredito").textContent = "A névoa venceu essa";
@@ -619,6 +671,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     pararAudio();
     const estrelas = erros === 0 ? 3 : erros <= 2 ? 2 : 1;
     const ant = salvo.eps[ep.numero];
+    salvo.andamento = null;
     salvo.eps[ep.numero] = { feito: true, estrelas: Math.max(estrelas, ant ? ant.estrelas : 0) };
     salvar();
     $("fim-eyebrow").textContent = `Fim do Episódio ${ep.numero}`;
@@ -689,10 +742,32 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   });
 
   // ---------- Início ----------
+  function abrirEpisodio(n) {
+    const a = salvo.andamento;
+    if (a && a.ep === n && epPorNumero(n)) mostrarSave(); else iniciarEp(n, false);
+  }
+  function mostrarSave() {
+    const a = salvo.andamento;
+    const e = a && epPorNumero(a.ep);
+    if (!e) { salvo.andamento = null; salvar(); return; }
+    const pct = Math.max(1, Math.min(99, Math.round(((a.i + 1) / (a.total || e.passos.length)) * 100)));
+    $("save-titulo").textContent = `Episódio ${e.numero} · ${e.titulo}`;
+    $("save-barra").style.width = pct + "%";
+    $("save-info").textContent = `Você parou em ${pct}% do episódio. Último trecho:`;
+    $("save-trecho").textContent = a.trecho.length > 120 ? a.trecho.slice(0, 118) + "…" : a.trecho;
+    $("save-trecho").hidden = !a.trecho;
+    $("save").hidden = false;
+    $("btn-continuar").focus();
+  }
+  $("btn-continuar").addEventListener("click", () => { $("save").hidden = true; iniciarEp(salvo.andamento.ep, true); });
+  $("btn-recomecar").addEventListener("click", () => { $("save").hidden = true; iniciarEp(salvo.andamento.ep, false); });
+  $("btn-save-fechar").addEventListener("click", () => { $("save").hidden = true; });
+
   preCarregar();
   pintarSom();
   pintarNevoa();
   desenharMapa();
   mostrar("tela-mapa");
+  if (salvo.andamento) mostrarSave();
 })();
 </script>
