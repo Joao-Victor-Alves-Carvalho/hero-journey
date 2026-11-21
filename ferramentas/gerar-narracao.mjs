@@ -19,7 +19,9 @@ const AJUSTES = {
   principe: { stability: 0.4, similarity_boost: 0.8, style: 0.35 },
   leo: { stability: 0.65, similarity_boost: 0.8, style: 0.1 },
   amanha: { stability: 0.5, similarity_boost: 0.8, style: 0.3 },
-  voz: { stability: 0.5, similarity_boost: 0.8, style: 0.3 }
+  voz: { stability: 0.5, similarity_boost: 0.8, style: 0.3 },
+  sussurro: { stability: 0.5, similarity_boost: 0.8, style: 0.3 },
+  tetsu: { stability: 0.6, similarity_boost: 0.8, style: 0.25 }
 };
 
 // Mesmo hash usado no jogo (FNV-1a 32 bits).
@@ -71,10 +73,12 @@ async function gerar(item) {
 
 mkdirSync(RAIZ + "audio", { recursive: true });
 let novos = 0, existentes = 0, caracteres = 0;
+const semVoz = new Set();
 for (const ep of T.episodios) {
   for (const item of itensFalados(ep)) {
     const arq = `${RAIZ}audio/${chaveAudio(item.quem, item.texto)}.mp3`;
     if (existsSync(arq)) { existentes++; continue; }
+    if (!VOZES[item.quem] || !VOZES[item.quem].id) { semVoz.add(item.quem); continue; }
     process.stdout.write(`Ep ${ep.numero} · ${item.quem}: ${item.texto.slice(0, 50)}… `);
     writeFileSync(arq, await gerar(item));
     novos++;
@@ -83,3 +87,4 @@ for (const ep of T.episodios) {
   }
 }
 console.log(`\nPronto: ${novos} áudios novos (${caracteres} caracteres), ${existentes} já existiam.`);
+if (semVoz.size) console.log("Sem voz configurada (pulados): " + [...semVoz].join(", "));

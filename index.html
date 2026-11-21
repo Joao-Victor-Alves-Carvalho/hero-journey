@@ -97,6 +97,8 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 .fundo.deposito { background-image: url("imagens/jogo/cena-deposito.webp"); }
 .fundo.sala { background-image: url("imagens/jogo/cena-sala.webp"); }
 .fundo.noite { background-image: url("imagens/jogo/cena-noite.webp"); }
+.fundo.portao { background-image: url("imagens/jogo/cena-portao.webp"); }
+.fundo.forja { background-image: url("imagens/jogo/cena-forja.webp"); }
 .fundo.marca { background-image: url("imagens/jogo/cena-noite.webp"); filter: brightness(.4) saturate(.3); animation: lateja 2.4s ease-in-out infinite; }
 @keyframes lateja { 50% { filter: brightness(.75) saturate(.3) } }
 .nevoa-cena { position: absolute; inset: auto -20% 0 -20%; height: 70%; pointer-events: none;
@@ -203,6 +205,15 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 .save-acoes { display: flex; flex-direction: column; gap: 8px; }
 .btn.fantasma { background: none; color: var(--nevoa); font-family: var(--f-texto); font-weight: 700; padding: 8px; }
 
+.trilhas { display: flex; flex-direction: column; gap: 10px; }
+.trilha { display: flex; align-items: center; gap: 14px; text-align: left; background: var(--tinta); border: 1px solid #ffffff1a; border-radius: 14px; padding: 14px; width: 100%; }
+.trilha .num { font-family: var(--f-display); color: var(--ouro); font-size: 1.1rem; width: 1.6em; flex: none; text-align: center; }
+.trilha .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.trilha .txt b { font-size: 1rem; }
+.trilha .txt span { font-size: .85rem; color: var(--nevoa); }
+.trilha:disabled { opacity: .5; cursor: default; }
+.trilha:disabled .num { color: var(--nevoa); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
@@ -233,6 +244,9 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
         <div class="sub">Temporada 1</div>
         <h1>Jornada do Herói</h1>
       </div>
+      <button class="btn-icone" id="btn-trilhas" aria-label="Músicas dos episódios">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </button>
       <div class="medidor" title="Quanto da névoa está em você. Escolhas certas fazem ela recuar.">
         <div class="rot"><span>Névoa</span><b class="nevoa-num">40%</b></div>
         <div class="barra"><i class="nevoa-barra"></i></div>
@@ -307,6 +321,25 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     </div>
   </section>
 
+  <!-- LISTA DE MÚSICAS -->
+  <section class="tela" id="tela-trilhas" hidden>
+    <div class="topo">
+      <button class="btn-icone" id="btn-trilhas-voltar" aria-label="Voltar ao mapa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="titulos">
+        <div class="sub">Temporada 1</div>
+        <h1>Músicas</h1>
+      </div>
+    </div>
+    <div class="rolavel">
+      <div class="conteudo">
+        <p class="dica">A música de cada episódio fica disponível assim que você chega nele, mesmo antes de terminar. Copie o estilo e a letra para gerar no Suno.</p>
+        <div class="trilhas" id="lista-trilhas"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- MÚSICA -->
   <section class="tela" id="tela-musica" hidden>
     <div class="topo">
@@ -372,22 +405,23 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     </svg>`
   };
   const IMAGENS = {
-    principe: ["neutro", "cansado", "determinado", "abalado"],
+    principe: ["neutro", "cansado", "determinado", "abalado", "esforco"],
+    tetsu: ["serio", "bravo", "aprova"],
     leo: ["apatico", "triste"],
     amanha: ["gentil", "convencido"]
   };
   const urlImagem = (quem, expr) => `imagens/jogo/${quem}-${expr}.webp`;
   function preCarregar() {
     Object.entries(IMAGENS).forEach(([q, es]) => es.forEach((e) => { const im = new Image(); im.src = urlImagem(q, e); }));
-    ["vale", "quarto", "deposito", "sala", "noite"].forEach((c) => { const im = new Image(); im.src = `imagens/jogo/cena-${c}.webp`; });
+    ["vale", "quarto", "deposito", "sala", "noite", "portao", "forja"].forEach((c) => { const im = new Image(); im.src = `imagens/jogo/cena-${c}.webp`; });
   }
 
-  const LOCAIS = { vale: "Vale Cinza", quarto: "Quarto · 5h59", deposito: "Depósito · 8h", sala: "Casa · 19h", noite: "Quarto · 23h", marca: "Meia-noite" };
-  const VILOES = ["voz", "amanha"];
+  const LOCAIS = { portao: "Depósito · 12h", forja: "Forja · 5h", vale: "Vale Cinza", quarto: "Quarto · 5h59", deposito: "Depósito · 8h", sala: "Casa · 19h", noite: "Quarto · 23h", marca: "Meia-noite" };
+  const VILOES = ["voz", "amanha", "sussurro"];
 
   // ---------- Telas ----------
   function mostrar(id) {
-    ["tela-mapa", "tela-ep", "tela-fim", "tela-musica"].forEach((t) => ($(t).hidden = t !== id));
+    ["tela-mapa", "tela-ep", "tela-fim", "tela-musica", "tela-trilhas"].forEach((t) => ($(t).hidden = t !== id));
   }
 
   // ---------- Mapa ----------
@@ -506,7 +540,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
       });
       erros = a.erros || 0;
       i = Math.min(a.i, roteiro.length - 1) - 1;
-      for (let k = i; k >= 0; k--) if (roteiro[k].cena) { definirCena(roteiro[k].cena); break; }
+      for (let k = i; k >= 0; k--) if (roteiro[k].cena) { definirCena(roteiro[k].cena, roteiro[k].local); break; }
     } else {
       salvo.andamento = null;
       salvar();
@@ -518,16 +552,16 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     avancar();
   }
 
-  function definirCena(c) {
+  function definirCena(c, local) {
     $("fundo").className = "fundo " + c;
-    $("local").textContent = LOCAIS[c] || "";
+    $("local").textContent = local || LOCAIS[c] || "";
   }
 
   function avancar() {
     i++;
     if (i >= roteiro.length) return terminarEp();
     const p = roteiro[i];
-    if (p.cena) { definirCena(p.cena); return avancar(); }
+    if (p.cena) { definirCena(p.cena, p.local); return avancar(); }
     if (p.escolha) return mostrarEscolha(p.escolha);
     mostrarFala(p);
   }
@@ -581,6 +615,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
       const src = urlImagem(pers.retrato, expr);
       let img = ret.querySelector("img");
       if (!img) { ret.innerHTML = '<img alt="">'; img = ret.querySelector("img"); }
+      img.onerror = () => ret.classList.add("oculto"); // imagem ainda não gerada: mostra só o texto
       if (!img.src.endsWith(src)) img.src = src;
       img.alt = pers.nome;
       ret.classList.remove("nevoa", "oculto");
@@ -625,7 +660,9 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     const box = $("escolhas");
     box.hidden = false;
     box.innerHTML = `<p class="pergunta">${esc.pergunta}</p>`;
-    esc.opcoes.forEach((op, idx) => {
+    const ordem = esc.opcoes.map((op) => op);
+    for (let k = ordem.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [ordem[k], ordem[j]] = [ordem[j], ordem[k]]; }
+    ordem.forEach((op, idx) => {
       const b = document.createElement("button");
       b.className = "opcao";
       b.innerHTML = `<span class="letra">${"ABC"[idx]}</span><span></span>`;
@@ -730,7 +767,29 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   $("aba-pt").addEventListener("click", () => trocarAba("pt"));
   $("aba-en").addEventListener("click", () => trocarAba("en"));
   $("btn-musica").addEventListener("click", () => abrirMusica(ep, "tela-fim"));
-  $("btn-musica-voltar").addEventListener("click", () => { if (origemMusica === "tela-mapa") desenharMapa(); mostrar(origemMusica); });
+
+  function mostrarTrilhas() {
+    const lista = $("lista-trilhas");
+    lista.innerHTML = "";
+    T.episodios.forEach((e) => {
+      const liberada = epLiberado(e.numero);
+      const b = document.createElement("button");
+      b.className = "trilha";
+      b.disabled = !liberada;
+      b.innerHTML = `<span class="num"></span><span class="txt"><b></b><span></span></span>`;
+      b.querySelector(".num").textContent = liberada ? e.numero : "?";
+      b.querySelector("b").textContent = liberada ? e.tituloMusica.pt : `Episódio ${e.numero}`;
+      b.querySelector(".txt span").textContent = liberada
+        ? `Episódio ${e.numero} · ${e.tituloMusica.en}`
+        : `Libera quando você chegar no episódio ${e.numero}`;
+      if (liberada) b.addEventListener("click", () => abrirMusica(e, "tela-trilhas"));
+      lista.appendChild(b);
+    });
+    mostrar("tela-trilhas");
+  }
+  $("btn-trilhas").addEventListener("click", mostrarTrilhas);
+  $("btn-trilhas-voltar").addEventListener("click", () => { desenharMapa(); mostrar("tela-mapa"); });
+  $("btn-musica-voltar").addEventListener("click", () => { if (origemMusica === "tela-trilhas") return mostrarTrilhas(); mostrar(origemMusica); });
 
   document.querySelectorAll(".btn-copiar").forEach((b) => {
     b.addEventListener("click", () => {
