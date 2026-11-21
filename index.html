@@ -379,7 +379,25 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   </section>
 </div>
 
-<script src="conteudo/episodios.js"></script>
+<script>
+// Atualização automática: o iPhone guarda uma cópia do app. Ao abrir, confere se há versão nova e recarrega.
+// A versão é trocada por ferramentas/nova-versao.py a cada publicação.
+window.VERSAO_APP = "20261121-172450";
+(function () {
+  try {
+    fetch("versao.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.v || j.v === window.VERSAO_APP) return;
+        var chave = "jh-atualizou-" + j.v;
+        try { if (sessionStorage.getItem(chave)) return; sessionStorage.setItem(chave, "1"); } catch (e) {}
+        location.replace(location.pathname + "?v=" + encodeURIComponent(j.v) + location.hash);
+      })
+      .catch(function () {});
+  } catch (e) {}
+})();
+</script>
+<script src="conteudo/episodios.js?v=20261121-172450"></script>
 <script>
 (() => {
   const T = window.TEMPORADA;

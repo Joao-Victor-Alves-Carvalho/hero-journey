@@ -14,4 +14,4 @@ Spoilers: o usuário joga sem ler a história. Nunca conte o roteiro ou as respo
 5. Personagem novo precisa de voz: entregue um prompt de Voice Design para o usuário e grave o ID em `conteudo/vozes.js`.
 6. Narração: `NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt ELEVENLABS_API_KEY=proxy-injected node ferramentas/gerar-narracao.mjs`
    (a chave do ElevenLabs está no ambiente `hero-journey`; só gera o que falta).
-7. Teste no navegador (Playwright), faça commit no branch de trabalho e publique.
+7. Teste no navegador (Playwright). Antes do commit rode `python3 ferramentas/nova-versao.py` (sem isso o iPhone não atualiza). Commit no branch de trabalho e publique.
