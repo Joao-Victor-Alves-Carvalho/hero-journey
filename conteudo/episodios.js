@@ -5,7 +5,7 @@
 // Tipos de passo:
 //   { cena: "quarto" }                       troca o cenário de fundo
 //   { quem: "narrador", texto: "..." }       narração
-//   { quem: "principe", texto: "..." }       fala de um personagem (ver `personagens`)
+//   { quem: "principe", expr: "cansado", texto: "..." }  fala; expr escolhe a expressão (imagens/jogo/principe-cansado.webp)
 //   { escolha: { pergunta, opcoes: [...] } } decisão; cada opção tem certa, retorno, verso e, se quiser, depois (falas extras)
 
 window.TEMPORADA = {
@@ -33,7 +33,7 @@ window.TEMPORADA = {
 
         { cena: "quarto" },
         { quem: "narrador", texto: "5h59. O quarto de Príncipe. O despertador vai tocar em um minuto." },
-        { quem: "principe", texto: "(Hoje eu começo. Prometi ontem. E anteontem também...)" },
+        { quem: "principe", expr: "cansado", texto: "(Hoje eu começo. Prometi ontem. E anteontem também...)" },
         { quem: "narrador", texto: "O alarme toca. E junto com ele vem uma voz macia, que parece sair de dentro do travesseiro." },
         { quem: "voz", texto: "Shhh... mais cinco minutos. Você trabalhou tanto ontem. Você merece." },
         {
@@ -69,7 +69,7 @@ window.TEMPORADA = {
         { quem: "narrador", texto: "8h. O depósito da Transportadora Vale. Caixas, etiquetas, o mesmo barulho de sempre." },
         { quem: "narrador", texto: "No balcão ao lado trabalha Léo, 40 anos. Quando Príncipe era criança, Léo desenhava heróis nos muros da rua, e a molecada fazia fila para ver." },
         { quem: "principe", texto: "Léo! Você ainda desenha? Lembra daquele dragão no muro da padaria?" },
-        { quem: "leo", texto: "...Desenho? Isso é coisa de quem tem tempo, moleque. Sonho é luxo." },
+        { quem: "leo", expr: "apatico", texto: "...Desenho? Isso é coisa de quem tem tempo, moleque. Sonho é luxo." },
         { quem: "narrador", texto: "Príncipe olha nos olhos dele. Estão cinzas. Completamente cinzas, como se alguém tivesse apagado a cor por dentro." },
         { quem: "voz", texto: "Não se preocupe. Ele tem 40. Você tem 24. Você ainda tem tempo de sobra..." },
         {
@@ -94,7 +94,7 @@ window.TEMPORADA = {
                 retorno: "Isso é consciência. Léo mostra um futuro possível. Entender como ele chegou ali mostra o que você não pode repetir. Quem já parou é um mapa de onde não ir.",
                 verso: "E eu vi meu futuro ali parado, sem calor",
                 depois: [
-                  { quem: "leo", texto: "...Sei lá. Não teve um dia. Eu só fui deixando pra semana que vem. Aí a semana que vem virou quinze anos." }
+                  { quem: "leo", expr: "triste", texto: "...Sei lá. Não teve um dia. Eu só fui deixando pra semana que vem. Aí a semana que vem virou quinze anos." }
                 ]
               }
             ]
@@ -103,7 +103,7 @@ window.TEMPORADA = {
 
         { cena: "sala" },
         { quem: "narrador", texto: "19h. Príncipe chega em casa moído. Na gaveta está o caderno do projeto dele. Ele prometeu estudar hoje." },
-        { quem: "principe", texto: "(Eu tô morto de cansado...)" },
+        { quem: "principe", expr: "cansado", texto: "(Eu tô morto de cansado...)" },
         { quem: "narrador", texto: "O sofá nunca pareceu tão macio. E a voz volta, mais perto agora." },
         { quem: "voz", texto: "Hoje não vai render. Você vai fazer tudo mal feito. Amanhã você acorda descansado e faz direito: duas horas, foco total. Não é melhor assim?" },
         {
@@ -128,7 +128,8 @@ window.TEMPORADA = {
                 retorno: "Dez minutos feios valem mais que duas horas perfeitas que nunca acontecem. A névoa se alimenta de dias zerados, e um dia com dez minutos não é zero: a corrente continua viva. Constância vence intensidade.",
                 verso: "Não preciso de duas horas, preciso de dez minutos",
                 depois: [
-                  { quem: "narrador", texto: "Príncipe escreve por dez minutos. Fica feio. Fica torto. Mas fica." }
+                  { quem: "narrador", texto: "Príncipe escreve por dez minutos. Fica feio. Fica torto. Mas fica." },
+                  { quem: "principe", expr: "determinado", texto: "(Dez minutos. Não é muito. Mas hoje não foi zero.)" }
                 ]
               }
             ]
@@ -138,8 +139,8 @@ window.TEMPORADA = {
         { cena: "noite" },
         { quem: "narrador", texto: "23h. Quando ele apaga a luz, a névoa entra pela fresta da janela e toma forma." },
         { quem: "narrador", texto: "Um homem alto, de sobretudo cinza, com um relógio de bolso parado no peito. O rosto não tem traços. Só um sorriso." },
-        { quem: "amanha", texto: "Muito prazer. Eu sou o Senhor Amanhã. Todo mundo me conhece. Pouca gente me reconhece." },
-        { quem: "amanha", texto: "Você me venceu duas vezes hoje. Parabéns. Mas me diga, Príncipe... amanhã você vai me vencer de novo, não vai?" },
+        { quem: "amanha", expr: "gentil", texto: "Muito prazer. Eu sou o Senhor Amanhã. Todo mundo me conhece. Pouca gente me reconhece." },
+        { quem: "amanha", expr: "convencido", texto: "Você me venceu duas vezes hoje. Parabéns. Mas me diga, Príncipe... amanhã você vai me vencer de novo, não vai?" },
         {
           escolha: {
             pergunta: "O Senhor Amanhã espera a resposta, sorrindo. O que Príncipe faz?",
@@ -166,11 +167,12 @@ window.TEMPORADA = {
           }
         },
 
-        { quem: "amanha", texto: "...Interessante. Faz muito tempo que alguém não me ignora." },
+        { quem: "amanha", expr: "convencido", texto: "...Interessante. Faz muito tempo que alguém não me ignora." },
         { quem: "narrador", texto: "Ele se desfaz na névoa. Mas, antes de sumir, encosta um dedo frio no pulso de Príncipe." },
         { cena: "marca" },
         { quem: "narrador", texto: "Meia-noite. Uma dor gelada. No pulso de Príncipe, uma marca cinzenta em forma de ponteiro de relógio começa a brilhar." },
-        { quem: "amanha", texto: "A gente se vê... amanhã." }
+        { quem: "principe", expr: "abalado", texto: "O que... o que é isso no meu pulso?!" },
+        { quem: "amanha", expr: "gentil", texto: "A gente se vê... amanhã." }
       ],
       licao: {
         titulo: "Amanhã é a mentira mais doce",

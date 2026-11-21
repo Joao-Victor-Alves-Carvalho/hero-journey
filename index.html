@@ -79,14 +79,15 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
 /* ---------- Cena ---------- */
 .palco { flex: 1; position: relative; overflow: hidden; margin-top: -64px; }
 .fundo { position: absolute; inset: 0; transition: background 1s ease; }
-.fundo.vale { background: radial-gradient(120% 60% at 50% 100%, #3a3560 0%, transparent 60%), linear-gradient(#0c0a18, #241f3f 70%, #3b3657); }
-.fundo.quarto { background: radial-gradient(70% 40% at 80% 20%, #5e6a9a55, transparent 70%), linear-gradient(#1b1b33, #2c2a48 60%, #1a1830); }
-.fundo.deposito { background: repeating-linear-gradient(90deg, #ffffff06 0 2px, transparent 2px 64px), linear-gradient(#3b3a4f, #55536a 55%, #2d2b3e); }
-.fundo.sala { background: radial-gradient(60% 40% at 30% 30%, #ffb46a33, transparent 70%), linear-gradient(#2a2033, #3d2f45 60%, #1d1726); }
-.fundo.noite { background: radial-gradient(40% 25% at 75% 18%, #c9d4ff33, transparent 70%), linear-gradient(#07060f, #14122a 70%, #0b0a17); }
-.fundo.marca { background: radial-gradient(45% 35% at 50% 45%, #b9b4d455, transparent 70%), #07060f; animation: lateja 2.4s ease-in-out infinite; }
-@keyframes lateja { 50% { filter: brightness(1.35) } }
-.skyline { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 45%; opacity: .55; }
+.fundo { background-color: var(--noite); background-size: cover; background-position: center; }
+.fundo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#100e1dd9 0%, #100e1d00 22%, #100e1d00 40%, #100e1df2 88%); }
+.fundo.vale { background-image: url("imagens/jogo/cena-vale.webp"); }
+.fundo.quarto { background-image: url("imagens/jogo/cena-quarto.webp"); }
+.fundo.deposito { background-image: url("imagens/jogo/cena-deposito.webp"); }
+.fundo.sala { background-image: url("imagens/jogo/cena-sala.webp"); }
+.fundo.noite { background-image: url("imagens/jogo/cena-noite.webp"); }
+.fundo.marca { background-image: url("imagens/jogo/cena-noite.webp"); filter: brightness(.4) saturate(.3); animation: lateja 2.4s ease-in-out infinite; }
+@keyframes lateja { 50% { filter: brightness(.75) saturate(.3) } }
 .nevoa-cena { position: absolute; inset: auto -20% 0 -20%; height: 70%; pointer-events: none;
   background: radial-gradient(50% 40% at 30% 80%, #c8c3e0, transparent 70%), radial-gradient(45% 35% at 75% 70%, #c8c3e0, transparent 70%);
   filter: blur(18px); animation: deriva 20s ease-in-out infinite alternate; transition: opacity 1s ease; }
@@ -95,9 +96,10 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--papel);
   background: #0008; border-left: 3px solid var(--aurora); padding: 4px 10px; z-index: 2;
 }
-.retrato { position: absolute; left: 50%; bottom: 168px; transform: translateX(-50%); width: min(62%, 260px); transition: opacity .35s ease, transform .35s ease; z-index: 1; }
+.retrato { position: absolute; left: 50%; bottom: 64px; transform: translateX(-50%); width: min(112%, 470px); transition: opacity .35s ease, transform .35s ease; z-index: 1; }
 .retrato.oculto { opacity: 0; transform: translate(-50%, 12px); }
-.retrato svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 10px 30px #0009); }
+.retrato img, .retrato svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 10px 30px #0009); }
+.retrato.nevoa { width: min(62%, 260px); bottom: 168px; }
 
 .dialogo {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
@@ -219,9 +221,6 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     </div>
     <div class="palco" id="palco">
       <div class="fundo vale" id="fundo"></div>
-      <svg class="skyline" id="skyline" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#0b0a16" d="M0 200V120h30v-30h20v30h15V70h35v50h10V95h25v-35h12v35h18v25h20V80h40v40h12V100h28V60h14v60h20V90h30v30h18v-40h24v120z"/>
-      </svg>
       <div class="nevoa-cena" id="nevoa-cena"></div>
       <div class="local" id="local"></div>
       <div class="retrato oculto" id="retrato"></div>
@@ -325,46 +324,24 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   }
 
   // ---------- Retratos (provisórios até termos a arte em anime) ----------
+  // A "voz" sem rosto continua sendo névoa desenhada; os outros usam a arte gerada no Gemini.
   const RETRATOS = {
-    principe: `<svg viewBox="0 0 200 260" aria-hidden="true">
-      <path d="M30 260c4-52 34-78 70-78s66 26 70 78z" fill="#2b3a6b"/>
-      <path d="M70 196l30 26 30-26" fill="none" stroke="#ff7a59" stroke-width="5"/>
-      <rect x="86" y="150" width="28" height="36" rx="8" fill="#e9b996"/>
-      <ellipse cx="100" cy="112" rx="46" ry="54" fill="#f3c9a6"/>
-      <path d="M48 112c-8-40 8-78 52-80 46-2 62 38 54 80l-10-30-8 22-10-34-12 26-10-30-10 28-12-24-8 30-8-22z" fill="#1e1b36"/>
-      <path d="M60 60l-22-14 26 4M140 60l24-12-26 4M100 34l-6-26 18 24" fill="#1e1b36"/>
-      <path d="M72 96l20 4M128 96l-20 4" stroke="#1e1b36" stroke-width="5" stroke-linecap="round"/>
-      <ellipse cx="82" cy="116" rx="9" ry="12" fill="#fff"/><ellipse cx="118" cy="116" rx="9" ry="12" fill="#fff"/>
-      <ellipse cx="83" cy="118" rx="6" ry="9" fill="#3b2a6e"/><ellipse cx="117" cy="118" rx="6" ry="9" fill="#3b2a6e"/>
-      <circle cx="85" cy="114" r="2.6" fill="#fff"/><circle cx="119" cy="114" r="2.6" fill="#fff"/>
-      <path d="M92 146q8 4 16 0" stroke="#9a5a4a" stroke-width="3" fill="none" stroke-linecap="round"/>
-    </svg>`,
-    leo: `<svg viewBox="0 0 200 260" aria-hidden="true">
-      <path d="M26 260c4-54 36-80 74-80s70 26 74 80z" fill="#4b4a5c"/>
-      <rect x="84" y="150" width="32" height="34" rx="8" fill="#a9a2a6"/>
-      <ellipse cx="100" cy="112" rx="48" ry="54" fill="#b8b0b2"/>
-      <path d="M50 92c0-34 22-52 50-52s52 18 52 52z" fill="#3e3d4d"/><rect x="44" y="86" width="124" height="12" rx="6" fill="#3e3d4d"/>
-      <path d="M74 118h16M110 118h16" stroke="#6f6a78" stroke-width="5" stroke-linecap="round"/>
-      <circle cx="82" cy="119" r="3" fill="#8c889c"/><circle cx="118" cy="119" r="3" fill="#8c889c"/>
-      <path d="M60 140q40 34 80 0" fill="#8f888c" opacity=".55"/>
-      <path d="M90 146h20" stroke="#5f5960" stroke-width="3" stroke-linecap="round"/>
-    </svg>`,
     voz: `<svg viewBox="0 0 200 260" aria-hidden="true">
       <g fill="#c8c3e0" opacity=".35"><circle cx="70" cy="120" r="46"/><circle cx="130" cy="110" r="52"/><circle cx="100" cy="160" r="50"/></g>
       <g fill="#e6e2f3" opacity=".25"><circle cx="100" cy="120" r="34"/></g>
       <path d="M70 132q30 26 60 0" fill="none" stroke="#efeaf7" stroke-width="4" stroke-linecap="round"/>
-    </svg>`,
-    amanha: `<svg viewBox="0 0 200 260" aria-hidden="true">
-      <path d="M40 260l14-130c4-24 22-36 46-36s42 12 46 36l14 130z" fill="#3a384d"/>
-      <path d="M100 120l-26 140M100 120l26 140" stroke="#26243a" stroke-width="4"/>
-      <ellipse cx="100" cy="66" rx="30" ry="36" fill="#8f8aa8"/>
-      <rect x="54" y="30" width="92" height="9" rx="4" fill="#26243a"/><rect x="72" y="0" width="56" height="34" rx="4" fill="#26243a"/>
-      <path d="M82 76q18 16 36 0" fill="none" stroke="#efeaf7" stroke-width="3.5" stroke-linecap="round"/>
-      <circle cx="100" cy="170" r="20" fill="#d9c38a" stroke="#8a7440" stroke-width="3"/>
-      <path d="M100 170v-12M100 170l8 6" stroke="#3a384d" stroke-width="3" stroke-linecap="round"/>
-      <path d="M100 150v-30" stroke="#d9c38a" stroke-width="2"/>
     </svg>`
   };
+  const IMAGENS = {
+    principe: ["neutro", "cansado", "determinado", "abalado"],
+    leo: ["apatico", "triste"],
+    amanha: ["gentil", "convencido"]
+  };
+  const urlImagem = (quem, expr) => `imagens/jogo/${quem}-${expr}.webp`;
+  function preCarregar() {
+    Object.entries(IMAGENS).forEach(([q, es]) => es.forEach((e) => { const im = new Image(); im.src = urlImagem(q, e); }));
+    ["vale", "quarto", "deposito", "sala", "noite"].forEach((c) => { const im = new Image(); im.src = `imagens/jogo/cena-${c}.webp`; });
+  }
 
   const LOCAIS = { vale: "Vale Cinza", quarto: "Quarto · 5h59", deposito: "Depósito · 8h", sala: "Casa · 19h", noite: "Quarto · 23h", marca: "Meia-noite" };
   const VILOES = ["voz", "amanha"];
@@ -484,7 +461,6 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   function definirCena(c) {
     $("fundo").className = "fundo " + c;
     $("local").textContent = LOCAIS[c] || "";
-    $("skyline").style.display = c === "vale" || c === "noite" ? "" : "none";
   }
 
   function avancar() {
@@ -506,7 +482,19 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     $("placa-nome").textContent = pers.nome;
     $("fala").className = "fala" + (narr ? " narracao" : "");
     const ret = $("retrato");
-    if (pers.retrato) { ret.innerHTML = RETRATOS[pers.retrato]; ret.classList.remove("oculto"); }
+    if (IMAGENS[pers.retrato]) {
+      const expr = IMAGENS[pers.retrato].includes(p.expr) ? p.expr : IMAGENS[pers.retrato][0];
+      const src = urlImagem(pers.retrato, expr);
+      let img = ret.querySelector("img");
+      if (!img) { ret.innerHTML = '<img alt="">'; img = ret.querySelector("img"); }
+      if (!img.src.endsWith(src)) img.src = src;
+      img.alt = pers.nome;
+      ret.classList.remove("nevoa", "oculto");
+    } else if (RETRATOS[pers.retrato]) {
+      ret.innerHTML = RETRATOS[pers.retrato];
+      ret.classList.add("nevoa");
+      ret.classList.remove("oculto");
+    }
     else ret.classList.add("oculto");
     digitar(p.texto);
   }
@@ -651,6 +639,7 @@ button:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
   });
 
   // ---------- Início ----------
+  preCarregar();
   pintarNevoa();
   desenharMapa();
   mostrar("tela-mapa");
