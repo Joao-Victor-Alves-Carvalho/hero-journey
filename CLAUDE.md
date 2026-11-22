@@ -15,3 +15,6 @@ Spoilers: o usuário joga sem ler a história. Nunca conte o roteiro ou as respo
 6. Narração: `NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt ELEVENLABS_API_KEY=proxy-injected node ferramentas/gerar-narracao.mjs`
    (a chave do ElevenLabs está no ambiente `hero-journey`; só gera o que falta).
 7. Teste no navegador (Playwright). Antes do commit rode `python3 ferramentas/nova-versao.py` (sem isso o iPhone não atualiza). Commit no branch de trabalho e publique.
+
+## Lembrete pedido pelo usuário
+Sempre que o usuário falar do Suno (gerar música, assinar, colar letra etc.), lembre: "Você me pediu para lembrar de usar o **Google Flow Music**, porque você já tem a assinatura e não precisa assinar o Suno."
