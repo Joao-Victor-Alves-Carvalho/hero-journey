@@ -1,48 +1,48 @@
 # Episódio 1 — A Mentira Mais Doce / Tomorrow (The Sweetest Lie)
 
-**Lição:** Amanhã é a mentira mais doce. Aja antes de negociar, não zere o dia, decida o amanhã hoje.
+**Tema (escondido na história):** o conforto que rouba o tempo com gentileza, um "depois" de cada vez.
 
 **Referências de estilo:** JRP (rap de anime contado pelo personagem), Billie Eilish (sussurros do vilão), Eminem (verso final rápido e agressivo).
-O Suno costuma recusar nomes de artistas, então use as descrições abaixo.
+Não use nomes de artistas no campo de estilo: use as descrições abaixo.
 
-**Duração:** a letra foi escrita para 6–7 minutos. Se o Suno parar antes, use **Extend** a partir da `[Ponte]`.
+**Duração:** a letra foi escrita para 6–7 minutos. Se a música parar antes, estenda a partir da `[Bridge]`.
 
 ---
 
 ## 🇧🇷 Versão em português
 
-### Estilo (cole no campo "Style of Music")
+### Estilo
 ```
-emotional anime rap, brazilian portuguese male vocals, storytelling from a young hero's perspective, melodic sung chorus, sad piano and cinematic strings, trap drums 88 bpm, eerie whispered dark-pop interludes with soft breathy vocals, final verse turns into fast aggressive rapid-fire rap, epic orchestral climax
+emotional anime rap, brazilian portuguese male vocals, storytelling from a young hero's perspective, melodic sung chorus, sad piano and cinematic strings, ticking clock sounds woven into the beat, trap drums 88 bpm, eerie whispered dark-pop interludes with soft breathy vocals, final verse turns into fast aggressive rapid-fire rap, epic orchestral climax
 ```
 
-### Letra (cole no campo "Lyrics")
+### Letra
 ```
 [Intro]
-[Whispered, intimate, eerie]
-Shhh... fica mais um pouco...
-O mundo não vai fugir...
-Amanhã é tão bonito...
+[Whispered, intimate, eerie, clock ticking]
+Shhh... o tempo parou pra você...
+Fica mais um pouco...
+Ninguém lá fora tá te esperando...
 Deixa pra depois... (deixa pra depois)
 
 [Verse 1]
 [Melodic rap, melancholic]
-Seis da manhã, o alarme grita, eu aperto o botão
-Mais cinco minutos virou costume, virou religião
-Café sem gosto, ônibus lotado, fone no ouvido
-Vale Cinza acorda junto, todo mundo meio esquecido
-Eu bato o ponto, finjo sorriso, conto as horas
-O relógio anda devagar, mas a vida vai embora
-Tinha um sonho no caderno, dobrado lá no fundo
-Hoje ele pesa na gaveta mais que o peso do mundo
-O Léo do lado desenhava quando eu era moleque
-Hoje ele diz "sonho é luxo", e o olhar nem reflete
-Os olhos dele tão cinza, a voz não tem mais cor
-E eu vi meu futuro ali parado, sem calor
-Cheguei em casa moído, prometi: "hoje eu começo"
-Mas o sofá tem uma voz que sabe o meu endereço
-Ela me chama pelo nome, fala manso, fala lento
-"Príncipe, descansa... amanhã tem mais tempo"
+Cinco e cinquenta e nove, e o ponteiro não anda
+A cidade inteira dorme numa névoa que comanda
+Eu sonho com um dragão vermelho pintado no muro
+Tão vivo que respira, tão quente que eu juro
+Acordo e tudo é cinza, o mesmo céu de ontem
+Os relógios atrasados e ninguém que os conte
+O Léo do lado pintava quando eu era moleque
+Hoje ele arruma caixa e o olhar nem reflete
+"Bom dia, dia bonito, igualzinho a ontem"
+A mesma frase, a mesma pausa, os mesmos olhos que somem
+No pulso dele o tempo morreu às cinco e pouco
+E ninguém acha estranho, só eu me sinto louco
+Abri a janela e o frio me acertou na cara
+A névoa recuou assustada, feito bicho que dispara
+E atrás de mim um tic, um som que eu não ouvia
+O único relógio andando na cidade era o meu, e eu nem sabia
 
 [Pre-Chorus]
 [Whispered]
@@ -57,25 +57,25 @@ Amanhã é a mentira mais doce que eu já ouvi
 Cada "depois" é um pedaço de mim que eu perdi
 A névoa não grita, ela só me faz dormir
 Se não for hoje, me diz: quando eu vou existir?
-Dois minutos já me tiram do chão
-Pé no chão antes que a mente diga não
+O relógio parado promete paz sem fim
+Mas paz que nunca acaba é a névoa dentro de mim
 Amanhã é a mentira mais doce que eu já ouvi
 Mas hoje, só hoje, eu decido seguir
 
 [Verse 2]
 [Melodic rap, darker]
-Ele não tem chifre, não tem garra, não tem fogo
-Ele tem paciência e conhece bem o jogo
-Não te proíbe de nada, só te faz adiar
-Não rouba o teu sonho, só te ensina a esperar
-"Segunda-feira", "mês que vem", "quando eu tiver grana"
-Cada promessa grande é a cama mais bacana
-Planejo duas horas pra fugir de dez minutos
-Faço lista de metas e não colho nenhum dos frutos
-Celular na cara antes de abrir a janela
-Começo o dia preso na vida dos outros na tela
-E quando a noite chega e eu olho pra trás
-Não fiz nada de errado... só não fiz nada demais
+Cheguei em casa e a TV já tava ligada
+Um homem na poltrona, de chapéu, voz educada
+Sobretudo cinza, um relógio de ouro na mão
+"Eu conserto o cansaço", falou como quem pede perdão
+Disse que o Léo agora vive em paz, sem pressa
+Sem conta, sem segunda, sem nenhuma promessa
+Me estendeu o relógio, a tampa brilhava quente
+E por um segundo o peso saiu da minha mente
+Ele nunca roubou nada, isso é o que mais assusta
+Cada minuto que ele tem, alguém deu sem luta
+O Léo deu quinze anos, um "depois" de cada vez
+Não foi tiro, foi carinho, foi a soma do que não fez
 
 [Chorus]
 [Sung, emotional]
@@ -83,13 +83,13 @@ Amanhã é a mentira mais doce que eu já ouvi
 Cada "depois" é um pedaço de mim que eu perdi
 A névoa não grita, ela só me faz dormir
 Se não for hoje, me diz: quando eu vou existir?
-Dois minutos já me tiram do chão
-Pé no chão antes que a mente diga não
+O relógio parado promete paz sem fim
+Mas paz que nunca acaba é a névoa dentro de mim
 Amanhã é a mentira mais doce que eu já ouvi
 Mas hoje, só hoje, eu decido seguir
 
 [Bridge]
-[Whispered villain voice, dark pop, minimal beat]
+[Whispered villain voice, gentle and warm, minimal beat, clock ticking]
 Eu não sou teu inimigo... eu sou teu travesseiro
 Eu sou o "só mais um" do episódio inteiro
 Eu não te prendo, Príncipe... tu fica porque quer
@@ -98,22 +98,20 @@ Eu sempre vou estar lá...
 
 [Verse 3]
 [Fast aggressive rap, beat drops, intense]
-Chega! Eu conheço tua voz, ela mora no meu peito
-Tu se veste de descanso, mas tu é só um defeito
-Tu não tem cara, tem calendário, tem soneca, tem desculpa
-Tu me faz sentir em paz e depois me cobra a culpa
-Hoje eu deixo a roupa pronta, o celular fora do quarto
-Decido o amanhã agora, antes que vire teu retrato
-Não preciso de duas horas, preciso de dez minutos
-Feio, torto, cansado, mas são meus e são absolutos
-O Léo parou num dia igual a esse, ninguém viu
-Não foi um tiro, foi um "depois" que ninguém sentiu
-Então eu escrevo, eu levanto, eu respiro, eu insisto
-Cada passo pequeno é o grito de que eu existo
-Tu é doce, eu sei, tu tem gosto de conforto
-Mas quem vive só de ti vai se apagando, meio morto
+Meia-noite, uma dor fina, um risco de luz na pele
+Um ponteiro no meu pulso que nenhuma névoa repele
+Tic! Ele anda. Tic! Eu tô acordado
+Numa cidade de relógios mortos, eu sou o tempo do outro lado
+Tu se veste de descanso, tu tem cheiro de lençol
+Mas quem dorme no teu colo nunca mais vê o sol
+Tu não rouba, tu pede, e é por isso que tu ganha
+Tu vence com gentileza, com conversa, com manha
+Mas eu vi o Léo parado, vi o dragão desbotado
+Vi meu futuro na poltrona, de relógio pausado
+Então eu abro a janela antes da desculpa ficar pronta
+Pé no chão antes que a mente faça a conta
 Pode sussurrar, pode chamar, tentar me segurar
-O Príncipe acordou, e hoje a coroa eu vou buscar!
+O Príncipe acordou, e o tempo voltou a andar!
 
 [Final Chorus]
 [Epic, full orchestra, powerful vocals]
@@ -121,8 +119,8 @@ Amanhã é a mentira mais doce que eu já ouvi
 Cada "depois" é um pedaço de mim que eu perdi
 A névoa não grita, ela só me faz dormir
 Se não for hoje, me diz: quando eu vou existir?
-Dois minutos já me tiram do chão
-Pé no chão antes que a mente diga não
+O relógio parado promete paz sem fim
+Mas paz que nunca acaba é a névoa dentro de mim
 Amanhã é a mentira mais doce que eu já ouvi
 Mas hoje, só hoje, eu decido seguir
 
@@ -131,6 +129,7 @@ Mas hoje, só hoje, eu decido seguir
 Amanhã... (shhh)... amanhã...
 [Spoken, firm]
 Não. Hoje.
+[Clock ticking, then silence]
 [End]
 ```
 
@@ -140,36 +139,36 @@ Não. Hoje.
 
 ### Style
 ```
-emotional anime rap, english male vocals, storytelling from a young hero's perspective, melodic sung chorus, sad piano and cinematic strings, trap drums 88 bpm, eerie whispered dark-pop interludes with soft breathy vocals, final verse turns into fast aggressive rapid-fire rap, epic orchestral climax
+emotional anime rap, english male vocals, storytelling from a young hero's perspective, melodic sung chorus, sad piano and cinematic strings, ticking clock sounds woven into the beat, trap drums 88 bpm, eerie whispered dark-pop interludes with soft breathy vocals, final verse turns into fast aggressive rapid-fire rap, epic orchestral climax
 ```
 
 ### Lyrics
 ```
 [Intro]
-[Whispered, intimate, eerie]
-Shhh... stay a little longer...
-The world won't run away...
-Tomorrow's so much prettier...
+[Whispered, intimate, eerie, clock ticking]
+Shhh... time just stopped for you...
+Stay a little longer...
+No one out there is waiting for you...
 Just leave it for later... (later)
 
 [Verse 1]
 [Melodic rap, melancholic]
-Six a.m., the alarm screams, I hit the snooze again
-Five more minutes turned to habit, turned to my religion then
-Tasteless coffee, crowded bus, headphones in my ears
-Gray Valley wakes up with me, half-forgotten through the years
-I punch the clock, I fake a smile, I count the hours down
-The clock moves slow, but life moves fast, and I just stick around
-Had a dream inside a notebook, folded way down deep
-Now it's heavier in the drawer than any weight I keep
-Leo next door used to draw back when I was a kid
-Now he says "dreams are luxury", like that's just what life did
-His eyes are gray, his voice is flat, no color in the sound
-And I saw my future standing there, just frozen to the ground
-I got home wrecked, I swore it: "Yeah, today's the day I start"
-But the couch has got a voice that knows the way into my heart
-It calls my name so soft and slow, it never seems to rush
-"Prince, just rest... tomorrow's got more time"... and then the hush
+Five fifty-nine, and the hand won't move an inch
+The whole town is sleeping in a fog that doesn't flinch
+I dream about a dragon painted red across a wall
+So alive that it's breathing, so warm I feel it all
+I wake and it's all gray, the same sky as before
+Every clock is running late and no one's keeping score
+Leo next door used to paint back when I was a kid
+Now he's stacking boxes with his eyes behind a lid
+"Morning, kid, nice day, just like yesterday"
+Same words, same pause, same eyes that fade away
+On his wrist the time died right at five fifty-nine
+And nobody thinks it's strange, like it's all just fine
+I opened up the window and the cold hit my face
+The fog pulled back in fear like an animal in a chase
+And behind me came a tick, a sound I'd never known
+The only clock still running in the city was my own
 
 [Pre-Chorus]
 [Whispered]
@@ -184,25 +183,25 @@ Tomorrow is the sweetest lie I ever heard
 Every "later" steals a part of me without a word
 The fog don't scream, it only sings me back to sleep
 If not today, then tell me: when's the life I get to keep?
-Two minutes is enough to get me off the floor
-Feet on the ground before my mind can close the door
+A stopped clock promises a peace that never ends
+But a peace that never ends is just the fog pretending to be friends
 Tomorrow is the sweetest lie I ever heard
 But today, just today, I'm keeping my word
 
 [Verse 2]
 [Melodic rap, darker]
-He's got no horns, he's got no claws, he's got no fire
-He's got patience and he knows exactly what you desire
-He won't forbid you anything, he'll just make you delay
-He won't steal your dream, he'll teach you how to wait away
-"Next Monday", "next month", "when I've got the cash"
-Every giant promise is a bed where I can crash
-I plan two hours just to dodge ten minutes on the clock
-Write a list of fifty goals, then let the whole thing stop
-Phone up in my face before I even see the sun
-Living someone else's life before my own's begun
-And when the night comes round and I look back at the day
-I did nothing wrong at all... I just did nothing, anyway
+I came home and the TV was already on
+A man in my armchair, polite, his hat pulled down
+Long gray coat, a golden watch held in his hand
+"I fix the tiredness", he said, like he'd understand
+He said Leo is at peace now, no rush and no stress
+No bills, no Mondays, no promises, no mess
+He held out the watch, the lid was shining warm
+And for a second all the weight just left my form
+He never stole a thing, and that's the scariest part
+Every minute that he has, someone gave him from the heart
+Leo gave him fifteen years, one "later" at a time
+Not a bullet, just a comfort, every day a quiet crime
 
 [Chorus]
 [Sung, emotional]
@@ -210,13 +209,13 @@ Tomorrow is the sweetest lie I ever heard
 Every "later" steals a part of me without a word
 The fog don't scream, it only sings me back to sleep
 If not today, then tell me: when's the life I get to keep?
-Two minutes is enough to get me off the floor
-Feet on the ground before my mind can close the door
+A stopped clock promises a peace that never ends
+But a peace that never ends is just the fog pretending to be friends
 Tomorrow is the sweetest lie I ever heard
 But today, just today, I'm keeping my word
 
 [Bridge]
-[Whispered villain voice, dark pop, minimal beat]
+[Whispered villain voice, gentle and warm, minimal beat, clock ticking]
 I'm not your enemy... I'm your pillow
 I'm the "just one more" of the whole episode
 I'm not holding you, Prince... you're staying 'cause you want to
@@ -225,22 +224,20 @@ I'll always be there...
 
 [Verse 3]
 [Fast aggressive rap, beat drops, intense]
-Enough! I know your voice, you've been living in my chest
-You dress yourself as resting, but you never let me rest
-You got no face, you got a calendar, a snooze, a "maybe next"
-You make me feel at peace, and then you bill me with regrets
-Tonight my clothes are ready and my phone's outside the room
-I decide tomorrow now before it's buried in your gloom
-I don't need two hours, I just need ten minutes flat
-Ugly, crooked, tired, but it's mine, and that is that
-Leo stopped on a day like this, and nobody saw
-Wasn't a bullet, was a "later", wasn't loud at all
-So I write, I rise, I breathe, I keep on pushing through
-Every little step's a scream: I'm alive, and I'm coming for you
-You're sweet, I know, you taste like comfort, warm and slow
-But comfort with no end is just a sleep that won't let go
+Midnight, a thin pain, a line of light across my skin
+A clock hand on my wrist that no fog can enter in
+Tick! It's moving. Tick! I'm wide awake
+In a town of frozen clocks, I'm the only time they couldn't take
+You dress yourself as rest, you smell like a clean bed
+But whoever sleeps inside your arms never lifts their head
+You don't steal, you just ask, and that's how you always win
+With kindness and with patience and a soft and gentle grin
+But I saw Leo frozen, saw the dragon fade away
+Saw my future in that armchair with a watch that wouldn't play
+So I open up the window before the excuse is done
+Feet on the ground before my mind can run
 Whisper all you want, call my name, try to hold me down
-The Prince is wide awake, and today I take the crown!
+The Prince is wide awake, and time is moving through this town!
 
 [Final Chorus]
 [Epic, full orchestra, powerful vocals]
@@ -248,8 +245,8 @@ Tomorrow is the sweetest lie I ever heard
 Every "later" steals a part of me without a word
 The fog don't scream, it only sings me back to sleep
 If not today, then tell me: when's the life I get to keep?
-Two minutes is enough to get me off the floor
-Feet on the ground before my mind can close the door
+A stopped clock promises a peace that never ends
+But a peace that never ends is just the fog pretending to be friends
 Tomorrow is the sweetest lie I ever heard
 But today, just today, I'm keeping my word
 
@@ -258,5 +255,6 @@ But today, just today, I'm keeping my word
 Tomorrow... (shhh)... tomorrow...
 [Spoken, firm]
 No. Today.
+[Clock ticking, then silence]
 [End]
 ```

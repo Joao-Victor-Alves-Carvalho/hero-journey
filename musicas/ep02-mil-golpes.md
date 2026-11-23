@@ -1,22 +1,22 @@
 # Episódio 2 — Mil Golpes / A Thousand Strikes
 
-**Lição:** Disciplina é voltar. Nunca falhe duas vezes, não compense, mude por identidade, divida o grande em blocos pequenos.
+**Tema (escondido na história):** voltar todo dia, mesmo depois de falhar. Ritmo vence força.
 
 **Referências de estilo:** Akashi Cruz (rap brasileiro introspectivo e melódico), JRP (história contada pelo personagem), Eminem (verso final rápido). As batidas de martelo na bigorna fazem parte da percussão.
-O Suno costuma recusar nomes de artistas, então use as descrições abaixo.
+Não use nomes de artistas no campo de estilo: use as descrições abaixo.
 
-**Duração:** a letra foi escrita para 6–7 minutos. Se o Suno parar antes, use **Extend** a partir da `[Bridge]`.
+**Duração:** a letra foi escrita para 6–7 minutos. Se a música parar antes, estenda a partir da `[Bridge]`.
 
 ---
 
 ## 🇧🇷 Versão em português
 
-### Estilo (cole no campo "Style of Music")
+### Estilo
 ```
 brazilian conscious rap, melodic introspective male vocals in brazilian portuguese, boom bap drums layered with heavy anvil and hammer strikes as percussion, 90 bpm, dark cinematic strings, gritty deep old man spoken-word interludes, motivational and raw, final verse fast and aggressive, epic choir in the last chorus
 ```
 
-### Letra (cole no campo "Lyrics")
+### Letra
 ```
 [Intro]
 [Spoken, deep old male voice, hammer hitting an anvil]
@@ -26,22 +26,22 @@ Não é a força, moleque. É voltar.
 
 [Verse 1]
 [Melodic introspective rap]
-Três dias de pé no chão, três noites no caderno
-Pensei que já era herói, que tinha vencido o inferno
-Aí veio a hora extra, a chuva, o ônibus parado
-Dormi de roupa e acordei com o pulso marcado
-A marca subiu no braço, gelada feito aço
-E a voz chegou macia: "quebrou, já era o laço"
-"Recomeça na segunda", ela fala com carinho
-Mas segunda é a curva onde a gente perde o caminho
-Falhei uma vez, beleza, isso é acidente
-Falhar de novo amanhã é hábito, é outra semente
-Não compenso, não me cobro, não carrego essa dívida
-Só volto hoje, dez minutos, e a corrente segue viva
-No ônibus, no joelho, a letra feia, o traço torto
-Mas cada linha que eu escrevo é a névoa perdendo o posto
-Não precisa ser perfeito, precisa ser constante
-Quem cai e volta no outro dia já é outro gigante
+Quatro da manhã, pincel na mão, o muro me esperando
+Um traço por dia pra um dragão que tá acordando
+Três madrugadas seguidas, três riscos de vermelho
+E o Léo parou um segundo, como quem se vê no espelho
+Na quarta veio a chuva, hora extra, ônibus parado
+Dormi de roupa e acordei com o ponteiro cansado
+O muro amanheceu cinza, os três traços sumiram
+E a voz chegou macia: "viu? teus dias se partiram"
+"Espera o fim de semana, recomeça tudo direito"
+Mas o sábado perfeito costuma chegar tarde demais
+Então eu fui assim mesmo, atrasado, sem jeito
+Um traço torto, tinta escorrendo, mas foi feito
+A molecada ajudou um dia, o muro ficou colorido
+No outro ninguém voltou, e eu entendi o sentido
+A vontade dos outros acende, mas não segura o fogo
+Quem segura é quem volta, sozinho, de novo e de novo
 
 [Pre-Chorus]
 [Sung softly]
@@ -62,18 +62,18 @@ Mil golpes... um de cada vez
 [Melodic introspective rap]
 Meio-dia no portão, um velho de martelo em mão
 Cicatriz de fogo no braço, cada golpe igual no chão
-Ele olhou pro meu pulso e disse: "eu já tive essa marca
-Ela sobe quando cede, ela desce quando encara"
-Me perguntou o porquê, e eu quase menti bonito
-"Quero provar pra eles", "quero grana", quero mito
-Mas a verdade saiu baixa, sem plateia, sem holofote
-Quero cumprir minhas promessas, mesmo sem ninguém que note
-Cada promessa cumprida é um voto em quem eu vou ser
-Identidade não se compra, é tijolo pra erguer
+Ele olhou pro meu pulso e viu o ponteiro andando
+"Numa cidade parada, eles vão te ver chegando"
+Me perguntou por que eu volto pro muro todo dia
+Pelo Léo? Por medo? Nem eu mesmo sabia
+Quem volta por alguém, para quando ele não volta
+Quem volta por medo, um dia o medo solta
+Mas tem um motivo que não cansa e não acaba
+É ser quem eu escolhi, mesmo quando a força desaba
 Sexta à noite o Guto chama: "aniversário, vem rapidinho"
 E a voz: "só uma horinha, ninguém vira herói sozinho"
-Eu disse "hoje não, irmão, sábado é sem desculpa"
-Não cortei ninguém da vida, só escolhi a minha luta
+Cada escolha tem um preço que só cobra de manhã
+A porta da forja abre às cinco, não amanhã
 
 [Chorus]
 [Powerful sung hook, anvil hits on the beat]
@@ -107,8 +107,8 @@ Quinhentos! A marca treme. Setecentos! Ela recua
 Novecentos e noventa e nove, e a névoa foge pra rua
 Mil! O ferro virou lâmina, o moleque virou forja
 Quem volta todo dia não precisa de sorte, só de força
-Disciplina não é vontade, vontade vai e vem
-Disciplina é voltar, mesmo quando não convém
+O ferro não sabe se eu tô com vontade ou não
+Ele só conhece o ritmo da minha mão
 Amanhã, cinco da manhã, e depois, e de novo
 Eu não sou o que eu prometo, sou o que eu repito, e me renovo
 
@@ -149,22 +149,22 @@ It's not strength, kid. It's coming back.
 
 [Verse 1]
 [Melodic introspective rap]
-Three days feet on the floor, three nights inside my book
-Thought I was a hero now, thought that was all it took
-Then came overtime and rain, and the bus broke down again
-Slept in yesterday's clothes, woke up with the mark on my skin
-It crawled up my arm, cold as steel, slow and sure
-And the voice came soft: "you broke the chain, start fresh, start pure"
-"Start again on Monday", it says it like a friend
-But Monday's just the corner where the good intentions end
-I failed once, alright, that's an accident, that's life
-Fail again tomorrow and the habit takes a knife
-No making up for lost time, I don't carry any debt
-Just ten minutes today, and the chain's not broken yet
-On the bus, on my knee, ugly letters, crooked lines
-But every word I write pushes the fog out of my mind
-It doesn't need to be perfect, it just needs to be again
-Fall one day, come back the next, that's how giants begin
+Four in the morning, brush in hand, the wall is waiting there
+One stroke a day for a dragon waking in the air
+Three nights in a row, three lines of burning red
+And Leo stopped a second, like a memory in his head
+On the fourth came rain, overtime, the bus broke down
+Slept in yesterday's clothes, the clock hand barely made a sound
+The wall woke up gray, all three strokes washed away
+And the voice came soft: "see? why even try, anyway?"
+"Wait until the weekend, start it over, do it right"
+But the perfect Saturday comes too late to win the fight
+So I went there anyway, late and clumsy, paint dripping
+One crooked stroke at sunrise, and the clock on me was ticking
+The kids came out to help one day, the wall was full of color
+Next day no one came back, not one, not another
+Other people's fire can light you, but it won't keep you warm
+The one who keeps it burning comes back alone through every storm
 
 [Pre-Chorus]
 [Sung softly]
@@ -185,18 +185,18 @@ A thousand strikes... and then again
 [Melodic introspective rap]
 Noon at the gate, an old man with a hammer in his hand
 Fire scars along his arms, every strike right where he planned
-He looked down at my wrist and said: "I had that mark before
-It climbs when you give in, it drops when you go to war"
-He asked me why I want it, and I almost lied real nice
-"To prove it to them", "for the money", "for the price"
-But the truth came out quiet, no crowd, no spotlight
-"I wanna keep my promises, even when no one's in sight"
-Every promise that I keep is a vote for who I'll be
-Identity's not something you can buy, it's brick by brick for me
+He looked down at my wrist and saw the clock hand moving
+"In a frozen town, kid, they'll notice what you're doing"
+He asked me why I keep on going back there every day
+For Leo? Out of fear? I didn't know what to say
+If you go back for someone, you stop when they don't come
+If you go back out of fear, one day the fear goes numb
+But there's a reason that won't tire, won't run out, won't fade
+To be the one I chose to be, even when I'm afraid
 Friday night, Guto calls: "it's a birthday, come on through"
 And the voice: "just an hour, heroes need their friends too"
-I said "not tonight, bro, Saturday, no excuse"
-I didn't cut nobody off, I just chose the fight I choose
+Every choice has got a price that only morning collects
+The forge door opens at five, no matter what you expect
 
 [Chorus]
 [Powerful sung hook, anvil hits on the beat]
@@ -230,8 +230,8 @@ Five hundred! The mark is shaking. Seven hundred! It retreats
 Nine hundred ninety-nine, and the fog runs to the streets
 A thousand! Iron turned to blade, and the boy became the forge
 Show up every single day, and no fog can change your course
-Discipline is not desire, desire comes and goes
-Discipline is coming back, even when nobody knows
+The iron doesn't care if I feel like it or not
+It only knows the rhythm of the hammer that I've got
 Tomorrow, five a.m., and the day after, and again
 I'm not what I promise, I'm what I repeat, until the end
 

@@ -1,5 +1,17 @@
 # ⚠️ SPOILERS — Bíblia da Temporada 1: "A Névoa Cinzenta"
 
+## Versão 2 (reescrita): estilo indireto
+- A história nunca explica a lição. Escolhas sem certo/errado: cada uma tem valor de fidelidade (0–2), marca e consequência na trama.
+- **O Relojoeiro** (antes "Senhor Amanhã"; mesma arte e voz): homem gentil de chapéu e relógio de bolso parado. Oferece "descanso" e pede o tempo das pessoas, um "depois" de cada vez. Acredita que é bondoso. Já teve uma marca no pulso: foi alguém como Príncipe (ligação com o passado de Tetsu: "lembra como terminou da última vez?").
+- **Mundo:** em Vale Cinza os relógios dos Adormecidos param às 5h59 e eles repetem o mesmo dia. A **marca** de Príncipe é um ponteiro de luz no pulso: o único relógio que anda. Fica forte quando ele age, fraca e dolorida quando ele desiste.
+- **Léo** pintou o dragão vermelho no muro da padaria. Príncipe repinta um traço por madrugada; Léo para por um segundo ao passar.
+- **Guto:** amigo de infância. Marca `convidou_guto` pode torná-lo aliado mais tarde.
+- Marcas do Ep. 1: abriu_janela, ficou_na_cama, ligou_leo, lembrou_dragao, observou_leo, ajudou_leo, segurou_relogio, enfrentou, investigou.
+- Marcas do Ep. 2: voltou_ao_muro, esperou_fim_de_semana, chamou_criancas, motivo_leo, motivo_medo, motivo_identidade, foi_festa, recusou_festa, convidou_guto, bateu_forte, contou, observou_tetsu.
+- Curva: Ep. 1–3 escolhas com consequência clara na própria cena; Ep. 4–6 consequências atrasadas; Ep. 7–9 dilemas entre valores; Ep. 10–12 escolhas sem opção boa.
+
+O resto deste documento é da versão 1 e vale como base do arco (os pilares e mentores continuam).
+
 > Documento de bastidores para escrevermos os episódios. Se você é o jogador, **não leia**.
 
 ## Mundo

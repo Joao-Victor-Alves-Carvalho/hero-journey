@@ -3,7 +3,7 @@
 // Só gera o que ainda não existe: mudou uma fala? Só ela é gerada de novo.
 // Os arquivos vão para audio/<hash>.mp3; o jogo calcula o mesmo hash (ver chaveAudio em index.html).
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
 import vm from "node:vm";
 
 const RAIZ = new URL("..", import.meta.url).pathname;
@@ -35,7 +35,7 @@ export function chaveAudio(quem, texto) {
   return h.toString(16).padStart(8, "0");
 }
 
-// Tudo o que é falado num episódio: falas, perguntas e retornos (lidos pela narradora).
+// Tudo o que é falado num episódio: falas (inclusive as dos ramos de cada escolha) e as perguntas.
 function itensFalados(ep) {
   const itens = [];
   const fala = (p) => { if (p.quem && p.texto) itens.push({ quem: p.quem, texto: p.texto }); };
@@ -44,7 +44,7 @@ function itensFalados(ep) {
     if (p.escolha) {
       itens.push({ quem: "narrador", texto: p.escolha.pergunta });
       for (const op of p.escolha.opcoes) {
-        itens.push({ quem: "narrador", texto: op.retorno });
+        if (op.retorno) itens.push({ quem: "narrador", texto: op.retorno });
         (op.depois || []).forEach(fala);
       }
     }
@@ -85,6 +85,14 @@ for (const ep of T.episodios) {
     caracteres += item.texto.length;
     console.log("ok");
   }
+}
+// --limpar apaga os áudios que nenhuma fala usa mais (depois de reescrever episódios).
+if (process.argv.includes("--limpar")) {
+  const usados = new Set();
+  for (const ep of T.episodios) for (const it of itensFalados(ep)) usados.add(chaveAudio(it.quem, it.texto) + ".mp3");
+  let apagados = 0;
+  for (const f of readdirSync(RAIZ + "audio")) if (f.endsWith(".mp3") && !usados.has(f)) { unlinkSync(RAIZ + "audio/" + f); apagados++; }
+  console.log(`Áudios sem uso apagados: ${apagados}`);
 }
 console.log(`\nPronto: ${novos} áudios novos (${caracteres} caracteres), ${existentes} já existiam.`);
 if (semVoz.size) console.log("Sem voz configurada (pulados): " + [...semVoz].join(", "));

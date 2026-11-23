@@ -161,3 +161,13 @@ Anexe a **ficha do Príncipe**.
 ```
 Using the attached character as exact reference (same hair, hoodie, lanyard), a cute chibi 3D figurine of him, like a small vinyl collectible toy, full body standing in a walking pose seen from a three-quarter front angle, big head and small body, soft studio lighting with gentle shadows, smooth 3D render. Plain solid bright green background (#00FF00), no ground shadow, no text, vertical 3:4.
 ```
+
+---
+
+# Reescrita (estilo indireto) — 1 imagem nova
+
+### 9. Cenário: o muro do dragão
+Enquanto não existir, o jogo usa a imagem da cidade.
+```
+A narrow street in a gloomy Brazilian working-class neighborhood at 5 a.m., an old bakery with a closed metal shutter, and on its long side wall a huge faded mural of a red Japanese-style dragon, partly covered by gray paint, a few fresh bright red brush strokes on it, a paint can and a brush on the sidewalk, thick soft gray fog, first orange light of dawn. Modern Japanese TV anime background art, painterly cinematic lighting, highly detailed, no people, no text, vertical 9:16.
+```
